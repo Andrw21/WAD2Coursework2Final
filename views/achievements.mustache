@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>header}}
+</head>
+<body class="container">
+    <h1 class="my-4">Your Achievements</h1>
+
+    <h2 class="mb-4">Add a new achievement</h2>
+    <form method="post" action="/achievements">
+        <div class="form-group">
+            <label for="goalId">Goal ID</label>
+            <input type="text" class="form-control" id="goalId" name="goalId" placeholder="Enter goal ID" required>
+        </div>
+        <div class="form-group">
+            <label for="timestamp">Timestamp</label>
+            <input type="datetime-local" class="form-control" id="timestamp" name="timestamp" required>
+        </div>
+        <div class="form-group">
+            <label for="details">Details</label>
+            <textarea class="form-control" id="details" name="details" placeholder="Achievement details" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add Achievement" class="btn btn-primary">
+        </div>
+    </form>
+
+    <h2 class="mt-4 mb-4">Achievement History</h2>
+    <ul class="list-group">
+        {{#achievements}}
+        <li class="list-group-item">
+            <strong>{{timestamp}}:</strong> Goal ID: {{goalId}}, Details: {{details}}
+        </li>
+        {{/achievements}}
+        {{^achievements}}
+        <li class="list-group-item">
+            No achievements found. Add some achievements above to get started.
+        </li>
+        {{/achievements}}
+    </ul>
+</body>
+</html>
